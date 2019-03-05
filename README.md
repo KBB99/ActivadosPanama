@@ -13,7 +13,7 @@ rails --version
 ## Clone Repository
 
 ```shell
-git clone https://github.com/KBB99/activados.git
+git clone https://github.com/KBB99/ActivadosPanama.git
 ```
 
 ## Install Dependencies
