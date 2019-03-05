@@ -2,7 +2,7 @@
 
 A web-app that connects Venezuelan immigrants with the NGO Activados Panama. The live website is available at https://www.activados.org
 
-#### Getting Started
+# Getting Started
 
 
 ## Ruby Version
