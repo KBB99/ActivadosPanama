@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get 'messages' => 'messages#index'
   resources :users
   resources :messages
+  mount ActionCable.server, at: '/cable'
 end
