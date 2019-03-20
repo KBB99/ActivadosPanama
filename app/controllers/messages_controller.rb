@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
   end
 
   def create
-    message = current_user.messages.build(message_params)
+    message = @current_user.messages.build(message_params)
     if message.save
       redirect_to messages_url
     else
@@ -18,7 +18,13 @@ class MessagesController < ApplicationController
 
     def get_messages
       @messages = Message.for_display
-      @message  = current_user.messages.build
+      @message  = @current_user.messages.build
+    end
+
+    def logged_in_user
+      @current_user = User.new
+      @current_user.username = "Anónimo"
+      @current_user.save
     end
 
     def message_params
