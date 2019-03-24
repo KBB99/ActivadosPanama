@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   get 'sessions/new'
   resources :users
   resources :messages
+  resources :conversations
   mount ActionCable.server, at: '/cable'
 end
