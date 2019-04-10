@@ -1,0 +1,11 @@
+<div class="ui segment">
+  <h3 id='mailbox_header'>Mailbox</h3>
+
+  <div class="ui list" id='mail_list'>
+    <div class="item">
+      <% @conversations.each do |conversation| %>
+          <%= link_to conversation.id, conversation_path(conversation) %>
+      <% end %>
+    </div>
+  </div>
+</div>

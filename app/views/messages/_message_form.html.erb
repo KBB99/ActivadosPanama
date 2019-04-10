@@ -1,6 +1,7 @@
 <div class="message-input">
   <%= form_for(@message, remote: true) do |f| %>
     <%= f.text_area :content %>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token%>
     <%= f.submit "Send", :style => 'display: none'%>
   <% end %>
 </div>

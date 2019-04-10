@@ -292,7 +292,7 @@ Trabajará de la mano con las instituciones del estado y los organismos multilat
             <h2>Chat en Vivo</h2>
           </div>
           <div class="modal-body">
-            <%= render 'messages/index' %>
+            <%= render 'conversations/show', conversation_id: @conversation.id %>
           </div>
         </div>
       </div>

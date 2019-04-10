@@ -1,6 +1,7 @@
 class ConversationsController < ApplicationController
 
   before_action do
+    is_admin
     # :my_conversations
     # @friend = User.find(@conversation.sender_id)
     # @other = User.find(@conversation.recipient_id)
@@ -24,6 +25,7 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = Conversation.find(params[:id])
+    @message = @conversation.messages.new
   end
 
   private
@@ -34,6 +36,14 @@ class ConversationsController < ApplicationController
   def my_conversations
     if @me.id != @conversation.sender_id || @me.id != @conversation.recipient_id
       redirect_to(users_url)
+    end
+  end
+
+  def is_admin
+    if current_user.admin?
+      return
+    else
+      redirect_to '/404.html'
     end
   end
 
