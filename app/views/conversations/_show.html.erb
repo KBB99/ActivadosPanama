@@ -1,13 +1,13 @@
 <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'%>
 <div class="message">
   <div id="messages" class="messages">
-    <div id="messages-table" class="messages-table">
+    <%= tag.div id: @conversation.id do%>
       <% if @conversation.messages.any? %>
         <% @conversation.messages.each do |m| %>
           <%= render m %>
         <% end %>
       <% end %>
-    </div>
+    <% end %>
   </div>
 </div>
 <%= render 'messages/message_form' %>

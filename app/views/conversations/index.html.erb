@@ -169,6 +169,11 @@
               </div>
             </div>
           </div> -->
+          <div class="item">
+            <% @conversations.each do |conversation| %>
+                <%= link_to conversation.id, conversation_path(conversation) %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

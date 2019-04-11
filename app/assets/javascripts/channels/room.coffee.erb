@@ -8,14 +8,13 @@ App.room = App.cable.subscriptions.create {channel:"RoomChannel", conversation: 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
 
-    unless data.content.blank?
-      if data.message_conversation_id == data.conversation
-        $('#messages-table').append '<div class="message">' +
-            '<div class="message-user">' + data.username + ":" + '</div>' +
-            '<div class="message-content">' + data.content + '</div>' + '</div>'
-      if data.activated?
-        $("#liveChats").append '<a href="#button" class="btn btn-primary btn-round btn-lg">' + 'Chat en Vivo' + '</a>'
-      scroll_bottom()
+    if data.content?
+      $("#"+data.conversation).append '<div class="message">' +
+          '<div class="message-user">' + data.username + ":" + '</div>' +
+          '<div class="message-content">' + data.content + '</div>' + '</div>'
+          scroll_bottom()
+    if data.online?
+      $("#liveChats").append '<a href="conversations/' +data.conversation + '" class="btn btn-primary btn-round btn-lg"> Chat en Vivo </a>'
 
 $(document).on 'turbolinks:load', ->
   submit_message()

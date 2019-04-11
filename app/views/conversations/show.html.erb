@@ -1,13 +1,15 @@
 <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'%>
-<div class="message">
-  <div id="messages" class="messages">
-    <div id="messages-table" class="messages-table">
-      <% if @conversation.messages.any? %>
-        <% @conversation.messages.each do |m| %>
-          <%= render m %>
-        <% end %>
-      <% end %>
+
+<%= render 'messages/message_form' %>
+<div class="modal fade modal-mini modal-primary" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <h2>Chat en Vivo</h2>
+      </div>
+      <div class="modal-body">
+        <%= render 'conversations/show', conversation_id: @conversation.id %>
+      </div>
     </div>
   </div>
 </div>
-<%= render 'messages/message_form' %>
