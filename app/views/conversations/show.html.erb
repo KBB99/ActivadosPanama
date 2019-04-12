@@ -1,5 +1,4 @@
-<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'%>
-
+<%unless current_user.admin %>
 <%= render 'messages/message_form' %>
 <div class="modal fade modal-mini modal-primary" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -13,3 +12,15 @@
     </div>
   </div>
 </div>
+<%else%>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <h2>Chat en Vivo</h2>
+      </div>
+      <div class="modal-body">
+        <%= render 'conversations/show', conversation_id: @conversation.id %>
+      </div>
+    </div>
+  </div>
+<%end%>

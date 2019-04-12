@@ -1,4 +1,8 @@
-
+<%if message.id? %>
+  <div class="message-user">
+    <%=message.user.username %>
+  </div>
+<%end%>
 <div class="message-content">
   <%= message.content %>
 </div>

@@ -7,19 +7,23 @@ App.room = App.cable.subscriptions.create {channel:"RoomChannel", conversation: 
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-
     if data.content?
       $("#"+data.conversation).append '<div class="message">' +
           '<div class="message-user">' + data.username + ":" + '</div>' +
           '<div class="message-content">' + data.content + '</div>' + '</div>'
-          scroll_bottom()
+          scroll_bottom(data.conversation)
+      if data.activated?
+        $("#liveChats").append '<a href="conversations/' +data.conversation + '" class="btn btn-primary btn-round btn-lg" id="conversation'+data.conversation+'">'+data.conversation+'</a>'
     if data.online?
-      $("#liveChats").append '<a href="conversations/' +data.conversation + '" class="btn btn-primary btn-round btn-lg"> Chat en Vivo </a>'
+      if data.online == true
+        $("#conversation"+data.conversation).removeClass("btn-secondary").addClass("btn-primary")
+      else if data.online == false
+        $("#conversation"+data.conversation).removeClass("btn-primary").addClass("btn-secondary")
+
 
 $(document).on 'turbolinks:load', ->
   submit_message()
-  scroll_bottom()
-
+  
 submit_message = () ->
   $('#message_content').on 'keydown', (event) ->
     if event.keyCode is 13
@@ -27,5 +31,5 @@ submit_message = () ->
       event.target.value = ""
       event.preventDefault()
 
-scroll_bottom = () ->
-  $('#messages').scrollTop($('#messages')[0].scrollHeight)
+scroll_bottom = (id) ->
+  $(".messages-table").scrollTop($('#'+id)[0].scrollHeight)
