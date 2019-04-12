@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  url: redis://redistogo:87ce036c7e131a93125f5ca24877f0c8@dory.redistogo.com:11826/
   channel_prefix: PanamaVenezuela_production
