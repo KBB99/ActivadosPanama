@@ -31,7 +31,6 @@
       <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="../assets/img/blurred-image-1.jpg">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="../index.html">Documentos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" rel="tooltip" title="Siguenos en Twitter" data-placement="bottom" href="#" target="_blank">
@@ -69,7 +68,7 @@
         <div class="button-container">
           <a href="#button" class="btn btn-primary btn-round btn-lg">Chats</a>
         </div>
-        <h3 class="title">Chats en Vivo</h3>
+        <h3 class="title">Chats</h3>
         <div class="progress-container" id="liveChats">
           <% @conversations.sort.reverse_each do |conversation| %>
             <%if conversation.user_id != current_user.id%>
