@@ -3,9 +3,15 @@
   <div id="messages" class="messages">
     <div class="messages-table">
     <%= tag.div id: @conversation.id do%>
+      <div class="message">
+        <div class = "message-user">Admin:</div>
+        <div class= "message-content">¿En qué puedo ayudarte?</div>
+      </div>
       <% if @conversation.messages.any? %>
         <% @conversation.messages.each do |m| %>
-          <%= render m %>
+          <div class="message">
+            <%= render m %>
+          </div>
         <% end %>
       <% end %>
     <% end %>

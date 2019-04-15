@@ -3,7 +3,7 @@ class RoomChannel < ApplicationCable::Channel
   def subscribed
     stream_from "room_channel"
     conversation = current_user.conversations.last
-    unless conversation.online
+    unless conversation.online OR current_user.admin
       ActionCable.server.broadcast 'room_channel',
         conversation: current_user.conversations.last.id,
         online: true

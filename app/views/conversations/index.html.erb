@@ -72,11 +72,13 @@
         <h3 class="title">Chats en Vivo</h3>
         <div class="progress-container" id="liveChats">
           <% @conversations.sort.reverse_each do |conversation| %>
-            <% if conversation.online %>
-              <%= link_to conversation.id, conversation_path(conversation), class: "btn btn-primary btn-round btn-lg", id: "conversation"+conversation.id.to_s%>
-            <%else %>
-              <%= link_to conversation.id, conversation_path(conversation), class: "btn btn-secondary btn-round btn-lg", id: "conversation"+conversation.id.to_s %>
-            <% end %>
+            <%if conversation.user_id != current_user.id%>
+              <% if conversation.online %>
+                <%= link_to conversation.id, conversation_path(conversation), class: "btn btn-primary btn-round btn-lg", id: "conversation"+conversation.id.to_s%>
+              <%else %>
+                <%= link_to conversation.id, conversation_path(conversation), class: "btn btn-secondary btn-round btn-lg", id: "conversation"+conversation.id.to_s %>
+              <% end %>
+            <%end%>
           <% end %>
         </div>
         <div class="row">

@@ -1,6 +1,7 @@
 # README
 
-A web-app that connects Venezuelan immigrants with the NGO Activados Panama. The live website is available at https://www.activados.org
+A web-app that connects Venezuelan immigrants with the NGO Activados Panama. The live website is available at https://www.activados.org.
+Documentation is available at https://kb3022.gitbook.io/activados/.
 
 # Getting Started
 

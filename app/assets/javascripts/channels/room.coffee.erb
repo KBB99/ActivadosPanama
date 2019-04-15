@@ -23,7 +23,7 @@ App.room = App.cable.subscriptions.create {channel:"RoomChannel", conversation: 
 
 $(document).on 'turbolinks:load', ->
   submit_message()
-  
+
 submit_message = () ->
   $('#message_content').on 'keydown', (event) ->
     if event.keyCode is 13
@@ -32,4 +32,5 @@ submit_message = () ->
       event.preventDefault()
 
 scroll_bottom = (id) ->
-  $(".messages-table").scrollTop($('#'+id)[0].scrollHeight)
+  if $("#"+id)[0] != undefined
+    $(".messages-table").scrollTop($('#'+id)[0].scrollHeight)
