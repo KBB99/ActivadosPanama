@@ -8,19 +8,23 @@ App.room = App.cable.subscriptions.create {channel:"RoomChannel", conversation: 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
     if data.content?
-      $("#"+data.conversation).append '<div class="message">' +
-          '<div class="message-user">' + data.username + ":" + '</div>' +
-          '<div class="message-content">' + data.content + '</div>' + '</div>'
-          scroll_bottom(data.conversation)
+      if $("#"+data.conversation)[0] != undefined
+        $("#"+data.conversation).append '<div class="message">' +
+            '<div class="message-user">' + data.username + ":" + '</div>' +
+            '<div class="message-content">' + data.content + '</div>' + '</div>'
+            scroll_bottom(data.conversation)
+      else
+        if $("#conversation"+data.conversation).length == 0
+          $("#announcements").prepend '<a href="/conversations/' +data.conversation + '" class="btn btn-primary btn-round btn-lg" id="conversation'+data.conversation+'">'+data.conversation+'</a>'
       if data.activated?
-        $("#liveChats").prepend '<a href="conversations/' +data.conversation + '" class="btn btn-primary btn-round btn-lg" id="conversation'+data.conversation+'">'+data.conversation+'</a>'
+        $("#liveChats").prepend '<a href="/conversations/' +data.conversation + '" class="btn btn-primary btn-round btn-lg" id="conversation'+data.conversation+'">'+data.conversation+'</a>'
     if data.online?
       if data.online == true
         $("#conversation"+data.conversation).removeClass("btn-secondary").addClass("btn-primary")
-        $("#announcements").prepend '<h2>El usuario se acaba de conectar</h2>'
       else if data.online == false
         $("#conversation"+data.conversation).removeClass("btn-primary").addClass("btn-secondary")
-        $("#announcements").prepend '<h2>El usuario se desconecto</h2>'
+        if $("#"+data.conversation)[0]!= undefined
+          alert("El usuario se desconectó")
 
 
 $(document).on 'turbolinks:load', ->
